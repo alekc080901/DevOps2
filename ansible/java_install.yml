@@ -1,0 +1,15 @@
+- name: Install Java on Alpine Docker Container
+  hosts: localhost
+  become: true
+
+  tasks:
+    - name: Install Java
+      community.general.apk:
+        name:
+          - java-cacerts
+          - openjdk21-jdk
+        state: present
+        update_cache: false
+
+    - name: Verify Java installation
+      command: java -version
